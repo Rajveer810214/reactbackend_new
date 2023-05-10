@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-    mongoose.connect(process.env.DATABASE)
-      .then(() => console.log('Connected to MongoDB'))
+mongoose.connect(process.env.DATABASE, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => console.log('Connected to MongoDB'))
       .catch((error) => console.log(error));
 const newSchema=new mongoose.Schema({
   name:{
@@ -19,5 +21,5 @@ const newSchema=new mongoose.Schema({
   }
 })
 const collection =mongoose.model("collection",newSchema)
-module.exports=collection
+
 module.exports=collection
